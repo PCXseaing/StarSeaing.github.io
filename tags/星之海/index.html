@@ -635,8 +635,82 @@ setInterval("createtime()",250);
     document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
   }
 </script>
+<script type="text/javascript">  
+// 浏览器标题切换  
+var OriginTitile = document.title;    // 保存之前页面标题  
+var titleTime;  
+document.addEventListener('visibilitychange', function(){  
+    if (document.hidden){  
+        document.title ='你不要人家了么？╯︿╰';  // 切出文字
+        clearTimeout(titleTime);  
+    }else{  
+        document.title = '我好喜欢你啊!';  // 切入文字
+        titleTime = setTimeout(function() {  
+            document.title = OriginTitile;  
+        }, 1000); // 2秒后恢复原标题  
+    }  
+});  
+</script>
 
+<script type="text/javascript" language="javascript">
+var getRandomColor = function(){
+  return  '#' +
+    (function(color){
+    return (color +=  '0123456789abcdef'[Math.floor(Math.random()*16)])
+      && (color.length == 6) ?  color : arguments.callee(color);
+  })('');
+}
+//随机生成颜色
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = getRandomColor();
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+//      var st= new Array("\u82CF","\u537F","\u5FF5","\u662F","\u6700","\u83DC","\u7684");
+        //&#x82CF;&#x537F;&#x5FF5;&#x662F;OI&#x6700;&#x83DC;&#x7684;苏卿念是最菜的
+ 
+ 
+//      var st= new Array("\u6211","\u559C","\u6B22","\u4F60","\u554A","\u2026","\u2026");
+        //&#x6211;&#x559C;&#x6B22;&#x4F60;&#x554A;&#x2026;&#x2026;我喜欢你啊……
+ 
+        var st= new Array("\u6211","\u53EA","\u559C","\u6B22","\u4F60","\u8C01","\u4E5F","\u4E0D","\u77E5","\u9053");
+        //&#x6211;&#x53EA;&#x559C;&#x6B22;&#x4F60;&#xFF0C;&#x8C01;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#xFF01;我只喜欢你，谁也不知道！
+//按照如上的例子添加，必须转utf-8
+
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        //$elem.innerText = "OωO";
+        clearInterval(anim);
+        $elem.innerText = st[click_cnt%10];
+//模数是总共的字数
+        click_cnt++;
+        $elem.style.fontSize = Math.random() * 10 + 20 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 200) {
+　　　　　　　　　　//上升高度
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase*2 + "px"; //increas*速度，数越大，速度越快.
+                $elem.style.opacity = (200 - increase*2) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
 </body>
 </html>
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
 <script src="/live2d-widget/autoload.js"></script>
+
