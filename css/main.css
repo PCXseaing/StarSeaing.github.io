@@ -1201,8 +1201,8 @@ pre .javascript .function {
 }
 .menu .menu-item a {
   display: block;
-  font-size: 13px;
-  color: #fff !important;
+  font-size: 18px;
+  color: #000 !important;
   line-height: inherit;
   border-bottom: 1px solid transparent;
   transition-property: border-color;
@@ -1831,7 +1831,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #00ff86;
+  background: #b69c8f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2689,5 +2689,5 @@ embed {
   min-height: 600px;
 }
 .footer-inner {
-  color: #fff;
+  color: #000;
 }
