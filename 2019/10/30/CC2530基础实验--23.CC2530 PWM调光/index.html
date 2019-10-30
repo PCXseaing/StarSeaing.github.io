@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="CC2530,">
 
 
 
@@ -86,17 +86,18 @@
 
 
 
-<meta name="description" content="欢迎来到星之海~喵呜~(❤ ω ❤)">
-<meta name="keywords" content="Minecreaft,java,StraSeaing,c">
-<meta property="og:type" content="website">
-<meta property="og:title" content="星之海">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="实验目的 过实验掌握CC2530芯片GPIO的配置方法 掌握Led驱动电路及开关Led的原理  掌握PWM原理       寄存器 作用 描述    P1 (0x90) 端口1 端口1。通用I / O端口。可以从SFR 位寻址。   P1SEL(0xF4) 端口1 功能选择 P1.7 到P0.0功能选择 0： 通用I / O ，1： 外设功能  P1DIR   P1DIR(0xFE) 端口1 方向">
+<meta name="keywords" content="CC2530">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CC2530基础实验--23.CC2530 PWM调光">
+<meta property="og:url" content="http://yoursite.com/2019/10/30/CC2530基础实验--23.CC2530 PWM调光/index.html">
 <meta property="og:site_name" content="星之海">
-<meta property="og:description" content="欢迎来到星之海~喵呜~(❤ ω ❤)">
+<meta property="og:description" content="实验目的 过实验掌握CC2530芯片GPIO的配置方法 掌握Led驱动电路及开关Led的原理  掌握PWM原理       寄存器 作用 描述    P1 (0x90) 端口1 端口1。通用I / O端口。可以从SFR 位寻址。   P1SEL(0xF4) 端口1 功能选择 P1.7 到P0.0功能选择 0： 通用I / O ，1： 外设功能  P1DIR   P1DIR(0xFE) 端口1 方向">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-30T01:57:09.780Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="星之海">
-<meta name="twitter:description" content="欢迎来到星之海~喵呜~(❤ ω ❤)">
+<meta name="twitter:title" content="CC2530基础实验--23.CC2530 PWM调光">
+<meta name="twitter:description" content="实验目的 过实验掌握CC2530芯片GPIO的配置方法 掌握Led驱动电路及开关Led的原理  掌握PWM原理       寄存器 作用 描述    P1 (0x90) 端口1 端口1。通用I / O端口。可以从SFR 位寻址。   P1SEL(0xF4) 端口1 功能选择 P1.7 到P0.0功能选择 0： 通用I / O ，1： 外设功能  P1DIR   P1DIR(0xFE) 端口1 方向">
 
 
 
@@ -126,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/30/CC2530基础实验--23.CC2530 PWM调光/">
 
 
 
@@ -141,7 +142,7 @@ daovoice('update');
  </script>
 
 
-  <title>星之海</title>
+  <title>CC2530基础实验--23.CC2530 PWM调光 | 星之海</title>
   
 
 
@@ -160,8 +161,7 @@ daovoice('update');
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 		<a href="https://github.com/PCXseaing" class="github-corner" aria-label="View source on GitHub"><svg width="100" height="100" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; opacity:0.7; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -254,185 +254,9 @@ daovoice('update');
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/16/星之海/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="薛定谔のPCX">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星之海">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/16/星之海/" itemprop="url">星之海</a></h1>
-        
-
-        <div class="post-meta">
-				          
-            <i class="fa fa-thumb-tack"></i>
-            <font color="#FF8533">置顶</font>
-            <span class="post-meta-divider">|</span>
-          
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-16T20:36:17+08:00">
-                2019-06-16
-              </time>
-            
-
-            
-
-            
-          
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/16/星之海/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/16/星之海/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  288 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-星之海飘浮于虚数中
-
-星之海是一片的净土
-无人抵达亦无人知晓“如果我不在了，你会怎么样？”我回去找你“如果找不到呢？”我会一直，一直，一直找下去。
-我有一个愿望。“是什么啊？”就是，希望这个世界上的人们，ta 所喜欢的人也喜欢 ta 然后呢，就是希望我认识的人们的，都要每天过的开心，和自己喜欢的人
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/16/星之海/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -462,9 +286,7 @@ daovoice('update');
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/30/CC2530基础实验--23.CC2530 PWM调光/" itemprop="url">CC2530基础实验--23.CC2530 PWM调光</a></h1>
+          <h1 class="post-title" itemprop="name headline">CC2530基础实验--23.CC2530 PWM调光</h1>
         
 
         <div class="post-meta">
@@ -505,6 +327,11 @@ daovoice('update');
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -555,40 +382,47 @@ daovoice('update');
       
 
       
-        
-          
-          实验目的
-过实验掌握CC2530芯片GPIO的配置方法
-掌握Led驱动电路及开关Led的原理 
-掌握PWM原理 
+        <h5 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h5><ul>
+<li>过实验掌握CC2530芯片GPIO的配置方法</li>
+<li>掌握Led驱动电路及开关Led的原理 </li>
+<li>掌握PWM原理 </li>
+<li></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>作用</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P1 (0x90)</td>
+<td>端口1</td>
+<td>端口1。通用I / O端口。可以从SFR 位寻址。</td>
+</tr>
+<tr>
+<td>P1SEL(0xF4)</td>
+<td>端口1 功能选择</td>
+<td>P1.7 到P0.0功能选择 0： 通用I / O ，1： 外设功能  P1DIR</td>
+</tr>
+<tr>
+<td>P1DIR(0xFE)</td>
+<td>端口1 方向</td>
+<td>P1.7到P1.0的I/O方向 0： 输入 1： 输出</td>
+</tr>
+<tr>
+<td>P1INP(0xF6)</td>
+<td>端口1 输入模式</td>
+<td>P1.7到P1.2的I/O输入模式。由于 P1.0 和P1.1 没有上拉/下拉功能, P1INP暂时不需要配置, 了解一下为 后面的实验打下基础 0： 上拉/下 拉(见P2INP (0xF7)–端口2输入模 式) 1： 三态</td>
+</tr>
+</tbody></table>
+<p>按照表格寄存器的内容，对P1.0口进行配置，当P1.0输出低电平时D1被点亮。配置如 下： </p>
+<p>==P1DIR |= 0x01; // P1.0 定义为输出 LED1 = 0; // LED1灯初始化为熄灭状态 #F44336== </p>
+<p> <strong><font color="#6495ED">PWM 原理 PWM 就是Pulse-Width Modulation (脉冲宽度调制)，这里面的脉冲宽度即在一个周期内 输出高电平的时间，假如说周期T=64US，脉冲宽度D=32us,则占空比=D/T=32/64=50% ，脉 冲宽度调整就是占空比的调整。</font></strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ioCC2530.h&gt;	//包含头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> uint unsigned int</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> uchar unsigned char</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义控制LED灯的端口</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LED1 P1_0		<span class="comment">//定义控制LED1灯的为P10端口</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Delay</span><span class="params">(uint)</span></span>;	<span class="comment">//延时函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitIO</span><span class="params">(<span class="keyword">void</span>)</span></span>;	<span class="comment">//初始化LED控制IO口函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Delay</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> CYCLE = <span class="number">600</span>,PWM_LOW = <span class="number">0</span>;		<span class="comment">//定义周期并赋值</span></span><br><span class="line">	InitIO();</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		LED1 =<span class="number">0</span>;</span><br><span class="line">		Delay(<span class="number">60000</span>);		<span class="comment">//加延时，便于观察熄灭过程</span></span><br><span class="line">		<span class="keyword">for</span>(PWM_LOW = <span class="number">1</span>; PWM_LOW &lt; CYCLE; PWM_LOW++)&#123;</span><br><span class="line">			<span class="comment">//PWM_LOW表示低电频时间，这个时间从1逐渐加到CYCLE周期、</span></span><br><span class="line">			LED1 = <span class="number">1</span>;		<span class="comment">//点亮</span></span><br><span class="line">			Delay(PWM_LOW);</span><br><span class="line">			LED1 =<span class="number">0</span>；	<span class="comment">//熄灭</span></span><br><span class="line">			Delay(CYCLE-PWM_LOW);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		LED1 =<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(PWM_LOW = CYCLE<span class="number">-1</span>; PWM_LOW &gt; <span class="number">0</span>; PWM_LOW--)&#123;</span><br><span class="line">			<span class="comment">//与逐渐变亮过程相反</span></span><br><span class="line">			LED1 = <span class="number">0</span>;		<span class="comment">//熄灭</span></span><br><span class="line">			Delay(PWM_LOW);</span><br><span class="line">			LED1 = <span class="number">1</span>;		<span class="comment">//点亮</span></span><br><span class="line">			Delay(CYCLE-PWM_LOW);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//延时函数</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Delay</span><span class="params">(uint t)</span></span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(--t);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//初始化LED灯控制口IO函数</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">InitIO</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">		P1DIR |= <span class="number">0X01</span>;		<span class="comment">//定义P10为输出</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-
-
-
-寄存器
-作用
-描述
-
-
-
-P1 (0x90)
-端口1
-端口1。通用I / O端口。可以从SFR 位寻址。
-
-
-P1SEL(0xF4)
-端口1 功能选择
-P1.7 到P0.0功能
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/10/30/CC2530基础实验--23.CC2530 PWM调光/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -598,359 +432,88 @@ P1.7 到P0.0功能
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>更多创作支持内容请移步至顶端标签💖发电💖</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="薛定谔のPCX 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="薛定谔のPCX 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    薛定谔のPCX
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/10/30/CC2530基础实验--23.CC2530 PWM调光/" title="CC2530基础实验--23.CC2530 PWM调光">http://yoursite.com/2019/10/30/CC2530基础实验--23.CC2530 PWM调光/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/29/2019年全国职业院校技能大赛高职组T4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="薛定谔のPCX">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星之海">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/29/2019年全国职业院校技能大赛高职组T4/" itemprop="url">2019年全国职业院校技能大赛高职组T4</a></h1>
-        
-
-        <div class="post-meta">
-				          
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-29T15:04:26+08:00">
-                2019-10-29
-              </time>
-            
-
-            
-
-            
+        <div class="post-tags">
           
-
+            <a href="/tags/CC2530/" rel="tag"># CC2530</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/10/29/2019年全国职业院校技能大赛高职组T4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/29/2019年全国职业院校技能大赛高职组T4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  339 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          任务要求
-程序开始运行时候LED1亮，LED2熄灭
-按下’SW1’按钮（按下时间不超过1秒）后松开，实现LED2亮2秒后熄灭
-重复前面两个步骤
-
-12345678910111213141516171819202122232425262728293031323334353637383940414243
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/10/29/2019年全国职业院校技能大赛高职组T4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/29/2019年全国职业院校技能大赛高职组T4/" rel="next" title="2019年全国职业院校技能大赛高职组T4">
+                <i class="fa fa-chevron-left"></i> 2019年全国职业院校技能大赛高职组T4
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/Java集合实现Queue模拟/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="薛定谔のPCX">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星之海">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/17/Java集合实现Queue模拟/" itemprop="url">Java集合实现Queue模拟(队列)</a></h1>
-        
-
-        <div class="post-meta">
-				          
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-17T09:13:12+08:00">
-                2019-06-17
-              </time>
-            
-
-            
-
-            
-          
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/17/Java集合实现Queue模拟/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/17/Java集合实现Queue模拟/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  324 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          在Java中通过集合实现Queue(队列):
-12345678910111213141516171819202122package QueueLearn;import java.util.ArrayList;import java.util.List;//2.使用集合实现队列功能，使用int数组保存
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/17/Java集合实现Queue模拟/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -960,10 +523,11 @@ P1.7 到P0.0功能
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -971,6 +535,13 @@ P1.7 到P0.0功能
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -991,8 +562,17 @@ P1.7 到P0.0功能
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1105,6 +685,22 @@ P1.7 到P0.0功能
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#实验目的"><span class="nav-number">1.</span> <span class="nav-text">实验目的</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1264,6 +860,10 @@ setInterval("createtime()",250);
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
